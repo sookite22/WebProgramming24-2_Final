@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티</title>
+    <link rel="stylesheet" href="css/review.css">
+</head>
+<body>
+    <header>
+        <div class="logo">입을지도</div>
+        <nav>
+            <ul>
+                <li><a href="map.html" class="button">지도</a></li>
+                <li><a href="weather.html" class="button">날씨</a></li>
+                <li><a href="community.html" class="button">커뮤니티</a></li>
+                <li><a href="recommend.html" class="button">추천 리스트</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="reviews">
+        <h2>사용자 스타일 리뷰</h2>
+
+        <!-- 리뷰 리스트 -->
+        <div id="reviewList" class="review-list"></div>
+
+        <!-- 업로드 버튼 (우측 하단 고정) -->
+        <button id="uploadBtn" class="upload-btn">업로드</button>
+
+        <!-- 업로드 창 (모달) -->
+        <div id="uploadModal" style="display: none;">
+            <div class="modal-content">
+                <button id="closeModal" class="close-btn">×</button>
+                <!-- <span id="closeModal" class="close">&times;</span> -->
+                <h2>스타일 업로드</h2>
+                <form id="uploadForm">
+                    <label for="images">사진 선택 (여러 장 가능):</label>
+                    <input type="file" id="images" name="images" accept="image/*" multiple required>
+                    <div id="imagePreview" class="image-preview"></div> <!-- 미리보기 영역 -->
+                    <label for="description">설명:</label>
+                    <textarea id="description" name="description" required></textarea>
+                    <button type="submit">업로드</button>
+                </form>
+            </div>
+        </div>                  
+    </section>
+
+    <footer>
+        <p>© 2024 입을지도 | All Rights Reserved</p>
+    </footer>
+
+    <script src="js/review.js"></script>
+</body>
+</html>

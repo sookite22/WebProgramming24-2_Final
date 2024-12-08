@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps 연동</title>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+        #weatherInfo {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Google Maps 연동</h1>
+    <div id="map"></div>
+    <div id="weatherInfo"></div>
+
+    <script>
+        const WEATHER_API_KEY = "346068ad77e60f650e5a410fa1749747"; // OpenWeather API 키를 여기에 입력하세요.
+
+        // OpenWeather API 호출 함수
+        function fetchWeather(lat, lng) {
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${WEATHER_API_KEY}&units=metric&lang=kr`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // 날씨 데이터를 HTML로 변환하여 표시
+                    const weatherInfo = `
+                        <h3>${data.name} 날씨</h3>
+                        <p>현재 온도: ${data.main.temp}°C</p>
+                        <p>체감 온도: ${data.main.feels_like}°C</p>
+                        <p>날씨: ${data.weather[0].description}</p>
+                        <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="${data.weather[0].description}">
+                    `;
+                    document.getElementById("weatherInfo").innerHTML = weatherInfo;
+                })
+                .catch(error => console.error("API 호출 오류:", error));
+        }
+
+        // Google Maps 초기화 함수
+        window.initMap = function() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 37.5665, lng: 126.9780 }, // 서울 좌표
+                zoom: 8,
+            });
+
+            // 지도 클릭 이벤트
+            map.addListener("click", (event) => {
+                const lat = event.latLng.lat();
+                const lng = event.latLng.lng();
+
+                // 선택한 위치의 날씨 정보를 가져와 표시
+                fetchWeather(lat, lng);
+            });
+        };
+    </script>
+    <!-- Google Maps JavaScript API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDH34GL_TZRheXAnE-aCfsZ1EwR2hMn7o&callback=initMap" async defer></script> 
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입을지도 (Map Your Style)</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/banner.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
+</head>
+<body>
+    <header><!-- 헤더 -->
+        <div class="logo">입을지도</div>
+        <nav>
+            <ul>
+                <li><a href="map.html" class="button">지도</a></li>
+                <li><a href="weather.html" class="button">날씨</a></li>
+                <li><a href="review.html" class="button">커뮤니티</a></li>
+                <li><a href="recommend.html" class="button">추천 리스트</a></li>
+            </ul>
+        </nav>
+        <div class="auth">
+            <input type="text" id="searchInput" placeholder="여행지 검색..." oninput="handleSearch()" class="awesomplete" />
+            <button id="searchButton" onclick="executeSearch()">검색</button>
+            <button onclick="location.href='login.html'">로그인</button>
+        </div>
+    </header>    
+
+    <!-- 이미지 배너 -->
+    <div id="imageSlide">
+        <div id="slides">
+            <img src="img/banner1.jpg" alt="banner1" onclick="">
+            <img src="img/banner2.jpg" alt="banner2" onclick="">
+            <img src="img/slides3-Baker.jpg" alt="banner3" onclick="">
+            <img src="img/slides4-Poetic Collective(1).jpg" alt="banner4" onclick="">
+        </div>
+        <button id="prev">&lang;</button>
+        <button id="next">&rang;</button>
+    </div>
+
+    <!-- 오늘의 인기 여행지 -->
+    <section class="popular-destinations" id="home">
+        <h2>오늘의 인기 여행지</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="destination1.jpg" alt="여행지 1">
+                <h3>파리</h3>
+                <p>낭만적인 가을 여행</p>
+            </div>
+            <div class="card">
+                <img src="destination2.jpg" alt="여행지 2">
+                <h3>도쿄</h3>
+                <p>현대적이면서도 전통적인 도시</p>
+            </div>
+            <div class="card">
+                <img src="destination3.jpg" alt="여행지 3">
+                <h3>발리</h3>
+                <p>따뜻한 해변과 여유로운 휴식</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 최신 인기 아이템 -->
+    <section class="trending-items" id="recommend">
+        <h2>최신 인기 아이템</h2>
+        <div class="items">
+            <div class="item">
+                <img src="item1.jpg" alt="아이템 1">
+                <h4>가벼운 아우터</h4>
+                <p>가을철 필수 아이템</p>
+            </div>
+            <div class="item">
+                <img src="item2.jpg" alt="아이템 2">
+                <h4>방수 신발</h4>
+                <p>비 오는 날에도 스타일리시하게</p>
+            </div>
+            <div class="item">
+                <img src="item3.jpg" alt="아이템 3">
+                <h4>포근한 스웨터</h4>
+                <p>추운 날씨에도 따뜻하게</p>
+            </div>
+        </div>
+    </section>
+
+    <footer><!-- 푸터 -->
+        <p>© 2024 입을지도 | All Rights Reserved</p>
+        <div id="footer-info">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+        </div>
+    </footer>
+    <script src="js/imageSlide.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>
