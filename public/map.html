@@ -1,3 +1,8 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -5,23 +10,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Maps 연동</title>
     <style>
-        #map {
-            height: 500px;
-            width: 100%;
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
-        #weatherInfo {
-            margin-top: 20px;
-            text-align: center;
+        #container {
+            display: flex;
+            height: 100vh;
+        }
+        #map {
+            flex: 1;
+        }
+        #weatherPanel {
+            width: 300px;
+            background-color: #f9f9f9;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        #weatherPanel h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+        #weatherPanel p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        #weatherPanel img {
+            display: block;
+            margin: 10px auto;
         }
     </style>
 </head>
 <body>
-    <h1 style="text-align: center;">Google Maps 연동</h1>
-    <div id="map"></div>
-    <div id="weatherInfo"></div>
+    <div id="container">
+        <div id="weatherPanel">
+            <h3>날씨 정보</h3>
+            <p>지도를 클릭해 날씨를 확인하세요!</p>
+        </div>
+        <div id="map"></div>
+    </div>
 
     <script>
         const WEATHER_API_KEY = "346068ad77e60f650e5a410fa1749747"; // OpenWeather API 키를 여기에 입력하세요.
+
+        // 의상 추천 함수
+        function getClothingRecommendation(temp) {
+            if (temp >= 27) {
+                return "반팔, 민소매, 반바지, 원피스";
+            } else if (temp >= 23) {
+                return "반팔, 얇은 셔츠, 롱슬리브, 반바지";
+            } else if (temp >= 20) {
+                return "롱슬리브, 가디건, 후디, 면바지";
+            } else if (temp >= 17) {
+                return "니트, 가디건, 후디, 맨투맨, 청바지, 면바지";
+            } else if (temp >= 12) {
+                return "자켓, 셔츠, 가디건, 간절기 야상, 스타킹";
+            } else if (temp >= 10) {
+                return "트렌치코트, 간절기 야상, 여러겹 껴입기";
+            } else if (temp >= 6) {
+                return "코트, 가죽자켓";
+            } else {
+                return "패딩, 겨울 아우터";
+            }
+        }
 
         // OpenWeather API 호출 함수
         function fetchWeather(lat, lng) {
@@ -30,15 +83,20 @@
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
-                    // 날씨 데이터를 HTML로 변환하여 표시
-                    const weatherInfo = `
+                    const temperature = data.main.temp;
+                    const clothingRecommendation = getClothingRecommendation(temperature);
+
+                    const weatherContent = `
                         <h3>${data.name} 날씨</h3>
-                        <p>현재 온도: ${data.main.temp}°C</p>
+                        <p>현재 온도: ${temperature}°C</p>
                         <p>체감 온도: ${data.main.feels_like}°C</p>
                         <p>날씨: ${data.weather[0].description}</p>
                         <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="${data.weather[0].description}">
+                        <h4>추천 의상</h4>
+                        <p>${clothingRecommendation}</p>
                     `;
-                    document.getElementById("weatherInfo").innerHTML = weatherInfo;
+
+                    document.getElementById("weatherPanel").innerHTML = weatherContent;
                 })
                 .catch(error => console.error("API 호출 오류:", error));
         }
@@ -55,12 +113,12 @@
                 const lat = event.latLng.lat();
                 const lng = event.latLng.lng();
 
-                // 선택한 위치의 날씨 정보를 가져와 표시
+                // 선택한 위치의 날씨 정보를 가져와 왼쪽 패널에 표시
                 fetchWeather(lat, lng);
             });
         };
     </script>
     <!-- Google Maps JavaScript API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDH34GL_TZRheXAnE-aCfsZ1EwR2hMn7o&callback=initMap" async defer></script> 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDH34GL_TZRheXAnE-aCfsZ1EwR2hMn7o&callback=initMap" async defer></script>
 </body>
 </html>
