@@ -2,7 +2,7 @@
 const reviews = [
     {
         id: 1,
-        image: 'style1.jpg',
+        image: '/img/style1.png',
         description: '가을에 어울리는 멋진 스타일!',
         likes: 10,
         comments: ['너무 예뻐요!', '이 스타일 완전 멋짐!']
@@ -40,7 +40,7 @@ const reviews = [
 // 리뷰 리스트 표시 함수
 function displayReviews() {
     const reviewList = document.getElementById('reviewList');
-    reviewList.innerHTML = '';  // 기존 리뷰들 제거
+    reviewList.innerHTML = ''; // 기존 리뷰들 제거
 
     reviews.forEach(review => {
         const reviewElement = `
@@ -66,7 +66,7 @@ function displayReviews() {
 function likeReview(id) {
     const review = reviews.find(r => r.id === id);
     review.likes += 1;
-    displayReviews();  // 업데이트된 내용 다시 렌더링
+    displayReviews(); // 업데이트된 내용 다시 렌더링
 }
 
 // 댓글 추가 함수
@@ -77,14 +77,19 @@ function addComment(id) {
     if (newComment) {
         const review = reviews.find(r => r.id === id);
         review.comments.push(newComment);
-        commentInput.value = '';  // 댓글 입력란 초기화
-        displayReviews();  // 업데이트된 내용 다시 렌더링
+        commentInput.value = ''; // 댓글 입력란 초기화
+        displayReviews(); // 업데이트된 내용 다시 렌더링
     }
 }
-//////////////////////////////////////////////////////////////////////////////////////////////
 
 // 업로드 모달 열기
 document.getElementById('uploadBtn').addEventListener('click', () => {
+    // 모달 초기화
+    document.getElementById('description').value = ''; // 설명 초기화
+    document.getElementById('images').value = ''; // 파일 초기화
+    document.getElementById('imagePreview').innerHTML = ''; // 미리보기 초기화
+
+    // 모달 표시
     document.getElementById('uploadModal').style.display = 'flex';
 });
 
@@ -99,8 +104,6 @@ window.onload = function () {
     displayReviews(); // 리뷰 목록 표시
 };
 
-const selectedFiles = new DataTransfer(); // 선택된 파일 관리용
-
 // 사진 선택 시 미리보기 표시
 document.getElementById('images').addEventListener('change', function (event) {
     const files = event.target.files;
@@ -108,8 +111,6 @@ document.getElementById('images').addEventListener('change', function (event) {
     previewContainer.innerHTML = ''; // 기존 미리보기 제거
 
     Array.from(files).forEach(file => {
-        selectedFiles.items.add(file); // DataTransfer에 파일 추가
-
         const reader = new FileReader();
         reader.onload = function (e) {
             const previewWrapper = document.createElement('div');
@@ -119,35 +120,11 @@ document.getElementById('images').addEventListener('change', function (event) {
             img.src = e.target.result;
             img.classList.add('preview-img'); // 미리보기 이미지 스타일
 
-            const deleteButton = document.createElement('button');
-            deleteButton.innerText = '×';
-            deleteButton.classList.add('delete-btn'); // 삭제 버튼 스타일
-            deleteButton.addEventListener('click', function () {
-                removeFile(file); // 파일 제거
-                previewWrapper.remove(); // 미리보기에서 제거
-            });
-
-            previewWrapper.appendChild(img);
-            previewWrapper.appendChild(deleteButton);
-            previewContainer.appendChild(previewWrapper);
+            previewContainer.appendChild(img);
         };
         reader.readAsDataURL(file);
     });
-
-    // input의 파일 목록 업데이트
-    document.getElementById('images').files = selectedFiles.files;
 });
-
-// 파일 제거 함수
-function removeFile(file) {
-    for (let i = 0; i < selectedFiles.items.length; i++) {
-        if (selectedFiles.items[i].getAsFile() === file) {
-            selectedFiles.items.remove(i); // DataTransfer에서 파일 제거
-            break;
-        }
-    }
-    document.getElementById('images').files = selectedFiles.files;
-}
 
 // 업로드 폼 제출 처리
 document.getElementById('uploadForm').addEventListener('submit', function (event) {
@@ -171,8 +148,3 @@ document.getElementById('uploadForm').addEventListener('submit', function (event
         document.getElementById('uploadModal').style.display = 'none'; // 모달 닫기
     }
 });
-
-// 페이지 로드 시 리뷰 리스트 표시
-window.onload = function() {
-    displayReviews();
-};

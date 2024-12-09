@@ -53,10 +53,12 @@ nav ul li a {
 
 .review img {
     width: 100%;
-    height: 150px;
-    object-fit: cover;
+    aspect-ratio: 4 / 5; /* 4:5 비율 고정 */
+    object-fit: cover; /* 이미지 원본 비율로 화면을 채움 */
     border-radius: 10px;
+    background-color: #f0f0f0; /* 로딩 중일 때 배경색 설정 */
 }
+
 
 .like-btn {
     background-color: #005f73;
@@ -91,18 +93,32 @@ nav ul li a {
     cursor: pointer;
 }
 
-.upload-modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 9999;
+#uploadModal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed; /* 화면에 고정 */
+    top: 50%; /* 화면 중앙 (위에서 50%) */
+    left: 50%; /* 화면 중앙 (왼쪽에서 50%) */
+    transform: translate(-50%, -50%); /* 정확히 중앙으로 이동 */
+    width: 400px; /* 모달 너비 */
+    max-width: 90%; /* 반응형 디자인 */
+    background-color: white; /* 배경색 */
+    padding: 20px; /* 내부 여백 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    z-index: 9999; /* 다른 요소보다 위에 표시 */
 }
+
+#uploadModal .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #333;
+}
+
 
 /* 모달 배경 */
 .modal {
