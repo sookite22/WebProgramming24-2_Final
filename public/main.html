@@ -23,17 +23,24 @@
         <div class="auth">
             <input type="text" id="searchInput" placeholder="여행지 검색..." oninput="handleSearch()" class="awesomplete" />
             <button id="searchButton" onclick="executeSearch()">검색</button>
-            <button onclick="location.href='login.html'">로그인</button>
+            <button id="loginButton" onclick="toggleSideMenu()">Home</button>
         </div>
     </header>    
+
+    <!-- 사이드 메뉴 -->
+    <div id="sideMenu">
+        <h3>마이페이지</h3>
+        <p>환영합니다, <span id="usernameDisplay"></span>님!</p>
+        <button onclick="logout()">로그아웃</button>
+    </div>
 
     <!-- 이미지 배너 -->
     <div id="imageSlide">
         <div id="slides">
-            <img src="img/banner1.jpg" alt="banner1" onclick="">
-            <img src="img/banner2.jpg" alt="banner2" onclick="">
-            <img src="img/slides3-Baker.jpg" alt="banner3" onclick="">
-            <img src="img/slides4-Poetic Collective(1).jpg" alt="banner4" onclick="">
+            <img src="img/banner1.jpg" alt="banner1" onclick="window.location.href='destination1.html'">
+            <img src="img/banner2.jpg" alt="banner2" onclick="window.location.href='destination2.html'">
+            <img src="img/slides3-Baker.jpg" alt="banner3" onclick="window.location.href='destination3.html'">
+            <img src="img/slides4-Poetic Collective(1).jpg" alt="banner4" onclick="window.location.href='destination4.html'">
         </div>
         <button id="prev">&lang;</button>
         <button id="next">&rang;</button>
@@ -93,5 +100,40 @@
     </footer>
     <script src="js/imageSlide.js"></script>
     <script src="js/search.js"></script>
+    <script>
+        // 페이지 로드 시 로그인 상태 확인
+        window.onload = function() {
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                // 로그인 상태일 경우 로그인 버튼을 "Home"으로 변경
+                document.getElementById('loginButton').textContent = 'Home';
+                // 로그인된 사용자명 표시
+                document.getElementById('usernameDisplay').textContent = localStorage.getItem('username');
+            } else {
+                // 로그인 안되어 있으면 로그인 페이지로 이동
+                document.getElementById('loginButton').onclick = function() {
+                    window.location.href = 'login.html';
+                };
+            }
+        };
+
+        // 사이드 메뉴 열기 / 닫기
+        function toggleSideMenu() {
+            document.getElementById('sideMenu').classList.toggle('open');
+        }
+
+        // 로그아웃 처리
+        function logout() {
+            alert('로그아웃 되었습니다.');
+
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            // 사이드 메뉴 닫기
+            document.getElementById('sideMenu').classList.remove('open');
+            // 홈 버튼 텍스트 변경
+            document.getElementById('loginButton').textContent = '로그인';
+            // 홈 페이지로 리디렉션
+            window.location.href = 'main.html'; // 홈 페이지로 리디렉션
+        }
+    </script>
 </body>
 </html>

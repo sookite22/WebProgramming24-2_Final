@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이 홈</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header>
+        <div class="logo">입을지도</div>
+        <nav>
+            <ul>
+                <li><a href="map.html" class="button">지도</a></li>
+                <li><a href="weather.html" class="button">날씨</a></li>
+                <li><a href="review.html" class="button">커뮤니티</a></li>
+                <li><a href="recommend.html" class="button">추천 리스트</a></li>
+            </ul>
+        </nav>
+        <div class="auth">
+            <button id="homeButton" onclick="toggleMenu()">Home</button>
+        </div>
+    </header>
+
+    <div id="sideMenu">
+        <a href="javascript:void(0)" onclick="logout()">로그아웃</a>
+    </div>
+
+    <footer>
+        <p>© 2024 입을지도 | All Rights Reserved</p>
+        <div id="footer-info">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('sideMenu').classList.toggle('open');
+        }
+
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            alert('로그아웃 되었습니다.');
+            window.location.href = 'login.html'; // 로그아웃 후 로그인 페이지로 리디렉션
+        }
+
+        // 페이지 로드 시 로그인 상태 체크
+        window.onload = function() {
+            if (!localStorage.getItem('isLoggedIn')) {
+                window.location.href = 'login.html'; // 로그인 안 되어 있으면 로그인 페이지로 리디렉션
+            }
+        };
+    </script>
+</body>
+</html>

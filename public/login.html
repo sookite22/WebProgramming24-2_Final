@@ -7,18 +7,23 @@
     <link rel="stylesheet" href="css/login&signup.css">
 </head>
 <body>
-    <h2>로그인</h2>
-    <form id="loginForm">
-        <input type="text" id="username" placeholder="아이디" required>
-        <input type="password" id="password" placeholder="비밀번호" required>
-        <button type="submit">로그인</button>
-    </form>
-    <div id="message"></div>
+    <div class="container">
+        <h2>로그인</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="아이디" required>
+            <input type="password" id="password" placeholder="비밀번호" required>
+            <button type="submit">로그인</button>
+        </form>
+        <div id="message"></div>
 
-    <!-- 회원가입으로 이동하는 링크 추가 -->
-    <p>회원이 아니신가요? <a href="signup.html">회원가입</a></p>
+        <!-- 회원가입으로 이동하는 링크 추가 -->
+        <p>회원이 아니신가요? <a href="signup.html">회원가입</a></p>
+    </div>
 
     <script>
+        // 페이지가 로드되었을 때 자동으로 아이디 입력창에 포커스를 설정
+        document.getElementById('username').focus();
+
         const loginForm = document.getElementById('loginForm');
         loginForm.addEventListener('submit', async function (event) {
             event.preventDefault();
@@ -38,7 +43,7 @@
                     // 로그인 상태를 localStorage에 저장
                     localStorage.setItem('isLoggedIn', 'true');
                     localStorage.setItem('username', username);
-                    window.location.href = 'home.html';
+                    window.location.href = 'main.html';
                 } else {
                     document.getElementById('message').textContent = data.message;
                 }

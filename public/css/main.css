@@ -176,6 +176,53 @@ footer {
 
 /***********************************************/
 
+/* 사이드 메뉴 스타일 */
+/* 사이드 메뉴 기본 스타일 */
+#sideMenu {
+    position: fixed;
+    top: 0;
+    right: -250px; /* 사이드 메뉴는 처음에 오른쪽 밖에 위치 */
+    width: 250px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000; /* 사이드 메뉴를 이미지 위로 표시 */
+}
+
+/* 사이드 메뉴가 열리면 오른쪽으로 이동 */
+#sideMenu.open {
+    transform: translateX(-250px); /* 사이드 메뉴가 오른쪽에서 나타나도록 */
+}
+
+#sideMenu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 0;
+    font-size: 18px;
+}
+
+#sideMenu a:hover {
+    background-color: #555;
+}
+
+#sideMenu button {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+#sideMenu button:hover {
+    background-color: #ff1a1a;
+}
+
+
+
+/* ///////////////////////////////////////////// */
+
 /* 이미지 슬라이드 영역 */
 #imageSlide {
     width: 100%;
@@ -183,6 +230,7 @@ footer {
     background-color: black;
     overflow: hidden; /* 영역 넘치면 감춤 */
     position: relative;
+    z-index: 1; /* 이미지 슬라이드는 사이드 메뉴 아래 */
 }
 #slides{
     display: flex; /* 이미지 가로로 배치 */
