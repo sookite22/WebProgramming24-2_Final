@@ -42,7 +42,7 @@
     <div id="container">
         <div id="weatherPanel">
             <h3>날씨 정보</h3>
-            <p>지도를 클릭해 날씨를 확인하세요!</p>
+            <p>지도를 클릭하거나 핑을 클릭해 정보를 확인하세요!</p>
         </div>
         <div id="map"></div>
     </div>
@@ -72,7 +72,7 @@
         }
 
         // OpenWeather API 호출 함수
-        function fetchWeather(lat, lng) {
+        function fetchWeather(lat, lng, callback) {
             const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${WEATHER_API_KEY}&units=metric&lang=kr`;
 
             fetch(apiUrl)
@@ -91,7 +91,7 @@
                         <p>${clothingRecommendation}</p>
                     `;
 
-                    document.getElementById("weatherPanel").innerHTML = weatherContent;
+                    callback(weatherContent);
                 })
                 .catch(error => console.error("API 호출 오류:", error));
         }
@@ -103,13 +103,49 @@
                 zoom: 8,
             });
 
+            // 미리 지정한 핑 데이터
+            const markers = [
+                {
+                    position: { lat: 37.5759, lng: 126.9769 },
+                    title: "광화문",
+                    info: "역사적인 광화문은 한국의 주요 랜드마크로 유명합니다.",
+                },
+                {
+                    position: { lat: 35.8150, lng: 127.1505 },
+                    title: "전주한옥마을",
+                    info: "전통 한옥 건축과 맛있는 음식을 즐길 수 있는 전주한옥마을.",
+                }
+            ];
+
+            // 핑 추가
+            markers.forEach(markerData => {
+                const marker = new google.maps.Marker({
+                    position: markerData.position,
+                    map: map,
+                    title: markerData.title,
+                });
+
+                marker.addListener("click", () => {
+                    fetchWeather(markerData.position.lat, markerData.position.lng, (weatherContent) => {
+                        const combinedContent = `
+                            ${weatherContent}
+                            <h4>${markerData.title} 정보</h4>
+                            <p>${markerData.info}</p>
+                        `;
+                        document.getElementById("weatherPanel").innerHTML = combinedContent;
+                    });
+                });
+            });
+
             // 지도 클릭 이벤트
             map.addListener("click", (event) => {
                 const lat = event.latLng.lat();
                 const lng = event.latLng.lng();
 
                 // 선택한 위치의 날씨 정보를 가져와 왼쪽 패널에 표시
-                fetchWeather(lat, lng);
+                fetchWeather(lat, lng, (weatherContent) => {
+                    document.getElementById("weatherPanel").innerHTML = weatherContent;
+                });
             });
         };
     </script>
