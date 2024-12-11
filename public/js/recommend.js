@@ -2,8 +2,9 @@
 const items = [
     { id: 1, name: "가벼운 아우터", description: "가을철 필수 아이템", likes: 25, image: "item1.jpg", season: "fall" },
     { id: 2, name: "방수 신발", description: "비 오는 날에도 스타일리시하게", likes: 15, image: "item2.jpg", season: "spring" },
-    { id: 3, name: "포근한 스웨터", description: "추운 날씨에도 따뜻하게", likes: 50, image: "item3.jpg", season: "winter" },
-    { id: 4, name: "따뜻한 장갑", description: "차가운 날씨를 대비하는 필수 아이템", likes: 30, image: "item4.jpg", season: "winter" }
+    { id: 3, name: "포근한 니트", description: "추운 날씨에도 따뜻하게", likes: 50, image: "item3.jpg", season: "winter" },
+    { id: 4, name: "따뜻한 코트", description: "차가운 날씨를 대비하는 필수 아이템", likes: 30, image: "item4.jpg", season: "winter" },
+    { id: 5, name: "따뜻한 장갑", description: "차가운 날씨를 대비하는 필수 아이템", likes: 30, image: "item4.jpg", season: "winter" }
 ];
 
 // 좋아요 수에 따라 아이템 정렬

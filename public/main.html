@@ -27,20 +27,21 @@
         </div>
     </header>    
 
-    <!-- 사이드 메뉴 -->
     <div id="sideMenu">
-        <h3>마이페이지</h3>
-        <p>환영합니다, <span id="usernameDisplay"></span>님!</p>
-        <button onclick="logout()">로그아웃</button>
-    </div>
+    <button id="closeMenuButton" onclick="toggleSideMenu()">×</button>
+    <h3>마이페이지</h3>
+    <p>환영합니다, <span id="usernameDisplay"></span>님!</p>
+    <button onclick="logout()">로그아웃</button>
+</div>
+
 
     <!-- 이미지 배너 -->
     <div id="imageSlide">
         <div id="slides">
             <img src="img/banner1.jpg" alt="banner1" onclick="window.location.href='destination1.html'">
             <img src="img/banner2.jpg" alt="banner2" onclick="window.location.href='destination2.html'">
-            <img src="img/slides3-Baker.jpg" alt="banner3" onclick="window.location.href='destination3.html'">
-            <img src="img/slides4-Poetic Collective(1).jpg" alt="banner4" onclick="window.location.href='destination4.html'">
+            <img src="img/banner3.jpg" alt="banner3" onclick="window.location.href='destination3.html'">
+            <img src="img/banner4.jpg" alt="banner4" onclick="window.location.href='destination4.html'">
         </div>
         <button id="prev">&lang;</button>
         <button id="next">&rang;</button>
@@ -117,9 +118,11 @@
         };
 
         // 사이드 메뉴 열기 / 닫기
-        function toggleSideMenu() {
-            document.getElementById('sideMenu').classList.toggle('open');
-        }
+function toggleSideMenu() {
+    const sideMenu = document.getElementById('sideMenu');
+    sideMenu.classList.toggle('open'); // open 클래스 토글
+}
+
 
         // 로그아웃 처리
         function logout() {
