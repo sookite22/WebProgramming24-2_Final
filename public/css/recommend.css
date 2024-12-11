@@ -51,6 +51,16 @@ nav ul li a {
     border-radius: 10px;
 }
 
+.filter-section {
+    margin: 20px;
+    text-align: center;
+}
+
+.filter-section select {
+    padding: 5px;
+    font-size: 16px;
+}
+
 footer {
     background-color: #005f73;
     color: #fff;
