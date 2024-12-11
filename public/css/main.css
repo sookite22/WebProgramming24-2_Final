@@ -221,7 +221,7 @@ footer {
     background-color: beige;
     overflow: hidden; /* 영역 넘치면 감춤 */
     position: relative;
-    z-index: 1; /* 이미지 슬라이드는 사이드 메뉴 아래 */
+    /* z-index: 1; 이미지 슬라이드는 사이드 메뉴 아래 */
 }
 #slides{
     display: flex; /* 이미지 가로로 배치 */
