@@ -15,7 +15,6 @@
         <nav>
             <ul>
                 <li><a href="map.html" class="button">지도</a></li>
-                <li><a href="weather.html" class="button">날씨</a></li>
                 <li><a href="review.html" class="button">커뮤니티</a></li>
                 <li><a href="recommend.html" class="button">추천 리스트</a></li>
             </ul>
@@ -27,14 +26,18 @@
         </div>
     </header>    
 
-    <div id="sideMenu">
-    <button id="closeMenuButton" onclick="toggleSideMenu()">×</button>
-    <h3>마이페이지</h3>
-    <p>환영합니다, <span id="usernameDisplay"></span>님!</p>
-    <button onclick="logout()">로그아웃</button>
-</div>
-
-
+    <div id="sideMenu" class="side-menu">
+        <button id="closeMenuButton" onclick="toggleMenu()">×</button>
+        <h3>마이페이지</h3>
+        <p>안녕하세요, <span id="usernameDisplay">사용자</span>님!</p>
+        <ul>
+            <li><a href="profile.html">프로필 수정</a></li>
+            <li><a href="review.html">내가 쓴 글</a></li>
+            <li><a href="notifications.html">내가 쓴 후기</a></li>
+            <li><a href="javascript:void(0)" onclick="logout()">로그아웃</a></li>
+        </ul>
+    </div>
+    
     <!-- 이미지 배너 -->
     <div id="imageSlide">
         <div id="slides">
