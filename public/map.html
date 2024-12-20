@@ -43,6 +43,7 @@
         <div id="weatherPanel">
             <h3>날씨 정보</h3>
             <p>지도를 클릭하거나 핑을 클릭해 정보를 확인하세요!</p>
+            <button id="favoriteButton" style="display: none;">즐겨찾기에 추가</button>
         </div>
         <div id="map"></div>
     </div>
@@ -133,6 +134,15 @@
                             <p>${markerData.info}</p>
                         `;
                         document.getElementById("weatherPanel").innerHTML = combinedContent;
+
+                        // 즐겨찾기 버튼 활성화 및 동작 설정
+                const favoriteButton = document.getElementById("favoriteButton");
+                favoriteButton.style.display = "block"; // 버튼 보이기
+                favoriteButton.onclick = () => addFavorite({
+                    lat: markerData.position.lat,
+                    lng: markerData.position.lng,
+                    title: markerData.title
+                });
                     });
                 });
             });
@@ -145,9 +155,28 @@
                 // 선택한 위치의 날씨 정보를 가져와 왼쪽 패널에 표시
                 fetchWeather(lat, lng, (weatherContent) => {
                     document.getElementById("weatherPanel").innerHTML = weatherContent;
+
+                    // 즐겨찾기 버튼 숨기기 (지도 클릭 시 즐겨찾기 추가 불가)
+                    document.getElementById("favoriteButton").style.display = "none";
                 });
             });
         };
+
+        // 즐겨찾기 데이터를 localStorage에 저장
+        function addFavorite(location) {
+            // 기존 저장된 즐겨찾기 데이터를 가져오기
+            const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+            // 중복 확인 후 추가
+            if (!favorites.some(fav => fav.lat === location.lat && fav.lng === location.lng)) {
+                favorites.push(location); // 새로운 즐겨찾기 추가
+                localStorage.setItem("favorites", JSON.stringify(favorites)); // 저장
+                alert(`${location.title}이(가) 즐겨찾기에 추가되었습니다!`);
+            } else {
+                alert(`${location.title}은(는) 이미 즐겨찾기에 추가되어 있습니다.`);
+            }
+        }
+
     </script>
     <!-- Google Maps JavaScript API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDH34GL_TZRheXAnE-aCfsZ1EwR2hMn7o&callback=initMap" async defer></script>

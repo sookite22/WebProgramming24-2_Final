@@ -1,8 +1,8 @@
 // 여행지 데이터
 const destinations = [
-    { id: 1, name: "파리", description: "낭만적인 가을 여행", image: "destination1.jpg" },
-    { id: 2, name: "도쿄", description: "현대적이면서도 전통적인 도시", image: "destination2.jpg" },
-    { id: 3, name: "발리", description: "따뜻한 해변과 여유로운 휴식", image: "destination3.jpg" }
+    { id: 1, name: "광화문", description: "서울의 랜드마크", image: "./img/banner4.jpg" },
+    { id: 2, name: "도쿄", description: "현대적이면서도 전통적인 도시", image: "./img/Tokyo.jpg" },
+    { id: 3, name: "전주 한옥마을", description: "한옥만의 특별한 감성성", image: "./img/banner1.jpg" }
 ];
 
 // Awesomplete 초기화

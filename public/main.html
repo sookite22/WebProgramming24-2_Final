@@ -33,7 +33,7 @@
         <ul>
             <li><a href="profile.html">프로필 수정</a></li>
             <li><a href="review.html">내가 쓴 글</a></li>
-            <li><a href="notifications.html">내가 쓴 후기</a></li>
+            <li><button onclick="viewFavorites()">즐겨찾기</button></li>
             <li><a href="javascript:void(0)" onclick="logout()">로그아웃</a></li>
         </ul>
     </div>
@@ -42,9 +42,9 @@
     <div id="imageSlide">
         <div id="slides">
             <img src="img/banner1.jpg" alt="banner1" onclick="window.location.href='destination1.html'">
-            <img src="img/banner2.jpg" alt="banner2" onclick="window.location.href='destination2.html'">
+            <img src="img/banner2_에버랜드.jpg" alt="banner2" onclick="window.location.href='destination2.html'">
             <img src="img/banner3.jpg" alt="banner3" onclick="window.location.href='destination3.html'">
-            <img src="img/banner.jpg" alt="banner4" onclick="window.location.href='destination4.html'">
+            <img src="img/banner4.jpg" alt="banner4" onclick="window.location.href='destination4.html'">
         </div>
         <button id="prev">&lang;</button>
         <button id="next">&rang;</button>
@@ -55,19 +55,22 @@
         <h2>오늘의 인기 여행지</h2>
         <div class="cards">
             <div class="card">
-                <img src="destination1.jpg" alt="여행지 1">
-                <h3>파리</h3>
-                <p>낭만적인 가을 여행</p>
+                <a target="_blank" href="https://royal.khs.go.kr/ROYAL/contents/R101020000.do?schBdcode=gbg&pageType=story&bdProgramCode=storyCtg3" class="card">
+                <img src="./img/banner4.jpg" alt="여행지 1"></a>
+                <h3>광화문</h3>
+                <p>서울의 랜드마크</p>
             </div>
             <div class="card">
-                <img src="destination2.jpg" alt="여행지 2">
+                <a target="_blank" href="https://travel.naver.com/overseas/JPTYO298184/city/summary" class="card">
+                <img src="./img/Tokyo.jpg" alt="여행지 2"></a>
                 <h3>도쿄</h3>
                 <p>현대적이면서도 전통적인 도시</p>
             </div>
             <div class="card">
-                <img src="destination3.jpg" alt="여행지 3">
-                <h3>발리</h3>
-                <p>따뜻한 해변과 여유로운 휴식</p>
+                <a target="_blank" href="https://blog.naver.com/jeonjuhanok1004" class="card">
+                <img src="./img/banner1.jpg" alt="여행지 3"></a>
+                <h3>전주 한옥마을</h3>
+                <p>한옥만의 특별한 감성</p>
             </div>
         </div>
     </section>
@@ -121,12 +124,10 @@
         };
 
         // 사이드 메뉴 열기 / 닫기
-function toggleSideMenu() {
-    const sideMenu = document.getElementById('sideMenu');
-    sideMenu.classList.toggle('open'); // open 클래스 토글
-}
-
-
+        function toggleSideMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            sideMenu.classList.toggle('open'); // open 클래스 토글
+        }
         // 로그아웃 처리
         function logout() {
             alert('로그아웃 되었습니다.');
@@ -139,6 +140,17 @@ function toggleSideMenu() {
             document.getElementById('loginButton').textContent = '로그인';
             // 홈 페이지로 리디렉션
             window.location.href = 'main.html'; // 홈 페이지로 리디렉션
+        }
+
+        // 저장된 즐겨찾기 데이터 확인
+        function viewFavorites() {
+            const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+            if (favorites.length === 0) {
+                alert("저장된 즐겨찾기가 없습니다.");
+            } else {
+                const favoriteList = favorites.map(fav => `${fav.title} (${fav.lat}, ${fav.lng})`).join("\n");
+                alert(`즐겨찾기 목록:\n${favoriteList}`);
+            }
         }
     </script>
 </body>
