@@ -55,3 +55,6 @@ app.post('/login', (req, res) => {
         return res.status(401).json({ result: 'fail', message: '아이디 또는 비밀번호가 잘못되었습니다.' });
     }
 });
+
+// node_modules
+// node server.js
