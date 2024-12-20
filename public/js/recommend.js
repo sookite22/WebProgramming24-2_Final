@@ -13,7 +13,7 @@ function sortItemsByLikes(items) {
     return items.sort((a, b) => b.likes - a.likes);
 }
 
-// 계절 필터 적용
+// 계절 필터
 function filterItemsBySeason(items, season) {
     if (season === "all") return items;
     return items.filter(item => item.season === season);
