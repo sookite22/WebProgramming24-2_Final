@@ -3,27 +3,56 @@ body {
 }
 
 header {
-    background-color: #005f73;
-    padding: 15px;
-    color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 15px 5%;
+    background-color: #005f73;
+    color: #fff;
+}
+
+header .logo {
+    /* font-family: "Poetsen One", sans-serif; */
+    font-size: 24px;
+    font-weight: bold;
 }
 
 nav ul {
     display: flex;
     list-style: none;
+    margin-left: 150px;
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 0 25px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
+
+nav ul li a:hover {
+    color: #ffba08;
+}
+
+.auth input {
+    border-radius: 15px;
+    padding: 7px;
+    margin-right: 10px;
+}
+
+.auth button {
+    padding: 5px 10px;
+    background-color: #ffba08;
+    border: none;
+    cursor: pointer;
+}
+
+.auth button:hover{
+    background-color: #ffb700
+} 
 
 /* //////////////////////////////////// */
 
@@ -84,7 +113,8 @@ nav ul li a {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #005f73;
+    background-color: #03596a;
+    box-shadow: grey;
     color: white;
     border: none;
     padding: 15px;
@@ -206,6 +236,19 @@ nav ul li a {
     object-fit: cover;
     aspect-ratio: 1 / 1;  /* 5:5 비율 고정 */
     border-radius: 10px;
+}
+
+/* ///////////////////////////////////////// */
+
+footer {
+    padding: 20px 5%;
+    background-color: #005f73;
+    color: #fff;
+    text-align: center;
+}
+
+#footer-info a {
+    color: #fff;
 }
 
 /* 스마트폰 화면에서의 비율 조정 */

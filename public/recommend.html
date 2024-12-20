@@ -7,16 +7,23 @@
     <link rel="stylesheet" href="css/recommend.css">
 </head>
 <body>
-    <header>
-        <div class="logo">입을지도</div>
+    <header><!-- 헤더 -->
+        <div class="logo">
+            <a href="main.html" style="text-decoration: none; color: inherit;">입을지도</a>
+        </div>
         <nav>
             <ul>
                 <li><a href="map.html" class="button">지도</a></li>
-                <li><a href="community.html" class="button">커뮤니티</a></li>
+                <li><a href="review.html" class="button">커뮤니티</a></li>
                 <li><a href="recommend.html" class="button">추천 리스트</a></li>
             </ul>
         </nav>
-    </header>
+        <div class="auth">
+            <input type="text" id="searchInput" placeholder="여행지 검색..." oninput="handleSearch()" class="awesomplete" />
+            <button id="searchButton" onclick="executeSearch()">검색</button>
+            <button id="loginButton" onclick="toggleSideMenu()">Home</button>
+        </div>
+    </header>  
 
     <section class="filter-section">
         <label for="seasonFilter">필터</label>
@@ -34,8 +41,13 @@
         <div id="itemList" class="items"></div>
     </section>
 
-    <footer>
+    <footer><!-- 푸터 -->
         <p>© 2024 입을지도 | All Rights Reserved</p>
+        <div id="footer-info">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+        </div>
     </footer>
 
     <script src="js/recommend.js"></script>
