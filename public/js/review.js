@@ -2,38 +2,31 @@
 const reviews = [
     {
         id: 1,
-        image: '/img/style1.png',
-        description: '가을에 어울리는 멋진 스타일!',
+        image: './img/style1.png',
+        description: '가을에 어울리는 코트 맛집',
         likes: 10,
-        comments: ['너무 예뻐요!', '이 스타일 완전 멋짐!']
+        comments: ['너무 예뻐요', '멋지다']
     },
     {
         id: 2,
-        image: 'style2.jpg',
+        image: './img/style2.png',
         description: '비 오는 날에 어울리는 스타일!',
         likes: 5,
-        comments: ['이 스타일 너무 편해 보인다!', '좋아요!']
+        comments: ['레인부츠 어디꺼예요?', '좋아요!']
     },
     {
         id: 3,
-        image: 'style2.jpg',
-        description: '비 오는 날에 어울리는 스타일!',
+        image: './img/style3.png',
+        description: '내 맘대로 입기기',
         likes: 7,
-        comments: ['이 스타일 너무 편해 보인다!', '좋아요!']
+        comments: ['이 스타일 너무 편해 보인다!', '욜']
     },
     {
         id: 4,
-        image: 'style2.jpg',
-        description: '비 오는 날에 어울리는 스타일!',
+        image: './img/style4.png',
+        description: '겨울 하면 패딩이죠',
         likes: 11,
-        comments: ['이 스타일 너무 편해 보인다!', '좋아요!']
-    },
-    {
-        id: 5,
-        image: 'style2.jpg',
-        description: '비 오는 날에 어울리는 스타일!',
-        likes: 8,
-        comments: ['이 스타일 너무 편해 보인다!', '좋아요!']
+        comments: ['키가 몇인가요?', '패딩 너무 예쁘다ㅠㅠㅠ']
     }
 ];
 

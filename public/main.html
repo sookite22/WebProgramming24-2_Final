@@ -126,10 +126,15 @@
             }
         };
 
-        // 사이드 메뉴 열기 / 닫기
+        // 사이드 메뉴 열기
         function toggleSideMenu() {
             const sideMenu = document.getElementById('sideMenu');
             sideMenu.classList.toggle('open'); // open 클래스 토글
+        }
+        // 사이드 메뉴 닫기
+        function toggleMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            sideMenu.classList.remove('open'); // open 클래스 제거
         }
         // 로그아웃
         function logout() {

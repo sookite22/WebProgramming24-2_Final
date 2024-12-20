@@ -110,11 +110,13 @@
                     position: { lat: 37.5759, lng: 126.9769 },
                     title: "광화문",
                     info: "역사적인 광화문은 한국의 주요 랜드마크로 유명합니다.",
+                    image: "./img/banner4.jpg",
                 },
                 {
                     position: { lat: 35.8150, lng: 127.1505 },
                     title: "전주한옥마을",
                     info: "전통 한옥 건축과 맛있는 음식을 즐길 수 있는 전주한옥마을.",
+                    image: "./img/banner1.jpg",
                 }
             ];
 
@@ -131,6 +133,7 @@
                         const combinedContent = `
                             ${weatherContent}
                             <h4>${markerData.title} 정보</h4>
+                            <img src="${markerData.image}" alt="${markerData.title}" style="width:100%; border-radius:8px; margin-top:10px;">
                             <p>${markerData.info}</p>
                         `;
                         document.getElementById("weatherPanel").innerHTML = combinedContent;
