@@ -7,8 +7,8 @@ const destinations = [
 
 // Awesomplete 초기화
 let awesomplete = new Awesomplete("#searchInput", {
-    list: destinations.map(destination => destination.name), // 여행지 이름만 가져옴
-    minChars: 1, // 최소 글자수 (1글자부터 자동 완성 시작)
+    list: destinations.map(destination => destination.name), // 여행지 이름만 가져오기기
+    minChars: 1, // 최소 글자수
     autoFirst: true // 첫 번째 일치 항목 자동 선택
 });
 

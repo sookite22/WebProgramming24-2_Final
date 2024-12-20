@@ -15,15 +15,13 @@
             <button type="submit">로그인</button>
         </form>
         <div id="message"></div>
-
-        <!-- 회원가입으로 이동하는 링크 추가 -->
         <p>회원이 아니신가요? <a href="signup.html">회원가입</a></p>
     </div>
 
     <script>
-        // 페이지가 로드되었을 때 자동으로 아이디 입력창에 포커스를 설정
-        document.getElementById('username').focus();
+        document.getElementById('username').focus(); // 자동 포커스스
 
+        // 로그인 시스템
         const loginForm = document.getElementById('loginForm');
         loginForm.addEventListener('submit', async function (event) {
             event.preventDefault();

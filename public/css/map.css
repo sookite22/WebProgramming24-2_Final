@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+#container {
+    display: flex;
+    height: 100vh;
+}
+#map {
+    flex: 1;
+}
+#weatherPanel {
+    width: 300px;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+#weatherPanel h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+#weatherPanel p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+#weatherPanel img {
+    display: block;
+    margin: 10px auto;
+}

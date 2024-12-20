@@ -40,9 +40,9 @@ function stopSlideShow() {
 function initSlideShow() {
     showSlide(currentSlide); // 첫 번째 슬라이드 표시
     startSlideShow(); // 자동 슬라이드 시작
-    prevButton.addEventListener("click", prevSlide); // 이전 버튼
-    nextButton.addEventListener("click", nextSlide); // 다음 버튼
+    prevButton.addEventListener("click", prevSlide); // 이전
+    nextButton.addEventListener("click", nextSlide); // 다음
 }
 
-// 슬라이드 쇼 초기화 실행
+// 슬라이드 쇼 초기화
 initSlideShow();
